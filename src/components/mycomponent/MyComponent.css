@@ -1,0 +1,6 @@
+.outer-div{
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 90%;
+    margin-top: 20px;
+}
