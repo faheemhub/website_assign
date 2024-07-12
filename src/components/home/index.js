@@ -6,12 +6,12 @@ import grpAdd from '../../atg_images/baseline-group_add.svg'
 import location from '../../atg_images/outline-location_on-24px.svg'
 import pen from '../../atg_images/baseline-edit-24px.svg'
 import ericon from '../../atg_images/baseline-error_outline-24px.svg'
-import Modal from '../modal/index'
 import PostModal from '../postModal/index'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import MyComponent from '../mycomponent/MyComponent'
 import {data} from '../../components/centralData/data'
+import SignupModal from '../modal/signupmodal'
 const Home = () => {
     const [modalAction, setModalAction] = useState(false);
     const [writePost, setWritePost] = useState(false);
@@ -30,11 +30,13 @@ const Home = () => {
                     <input id='search-inp' type='text' placeholder='Search for your favorite groups in ATG'/>
                 </div>
                 <div className='nav-right-box'>
-                        <p>Create account.<span style={{color:"blue", cursor:'pointer'}}>It's free!</span></p>
+                        <p>Create account.<span style={{color:"blue", cursor:'pointer'}}
+                        onClick={()=>setModalAction(true)}
+                        >It's free!</span></p>
                         <img src={dropDown} style={{cursor:'pointer'}}/>
                 </div>
             </nav>
-            {modalAction && (<Modal handleClose={handleClose}/>)}
+            {modalAction && (<SignupModal handleClose={handleClose}/>)}
             {writePost && (<PostModal handleClose={handleClose}/>)}
                 <div className='web-cover'>
                 <div id='cover-text'>
@@ -42,7 +44,7 @@ const Home = () => {
                     <p id='p2'>142,461 Computer Engineers follow this</p>
                 </div>
             </div>
-            <div className='second-container' style={{width:'70%', margin:'0px auto'}}>
+            <div className='second-container' style={{width:'70%', margin:'auto auto', marginTop:'25px'}}>
                 <div className='nav2' style={{borderBottom:'1px solid rgb(210, 210, 210)'}}>
                     <div className='nav2-left-div'>
                         <ul id='nav2-ul'>
@@ -52,8 +54,10 @@ const Home = () => {
                                 color:'gray',
                                 marginRight:'18px',
                                 fontSize:'16px',
-                                }}>
-                                All Posts
+                                }}
+                                className={(isActive) => isActive ? "active-class": "non-active-class" }>
+                                {/* activeStyle={{ backgroundColor: 'red' }} */}
+                                All Posts(32)
                             </Link>
                             </li>
                             <li>
@@ -96,7 +100,10 @@ const Home = () => {
                     </div>
                     <div className='nav2-right-div'>
                         <div 
-                            style={{display:'flex', justifyContent:'center', alignItems:'center', cursor:'pointer'}}
+                            style={{display:'flex', justifyContent:'center',
+                                alignItems:'center', cursor:'pointer',
+                                backgroundColor:'#EDEEF0', width:'125px', height:'36px',
+                                paddingLeft:'8px', borderRadius:'4px'}}
                             onClick={()=>setWritePost(true)}
                             >
                         <p style={{fontWeight:'bold'}}>Write a Post</p><img src={dropDown}/>
@@ -111,7 +118,6 @@ const Home = () => {
                             marginLeft:'30px',
                             cursor:'pointer'
                         }}
-                            onClick={()=>setModalAction(true)}
                             >
                             <img src={grpAdd} style={{paddingLeft:'5px'}}/>
                             <p style={{margin:'0px 10px', color:'white'}}>Join Group</p></div>
@@ -123,8 +129,10 @@ const Home = () => {
                     return(<MyComponent
                     topic={item.topic}
                     title={item.title}
-                    image={item.image}
+                    coverImage={item.coverImage}
                     para={item.para}
+                    userName={item.userName}
+                    userPic={item.userPic}
                 />)}    
                 )}
                 </div>

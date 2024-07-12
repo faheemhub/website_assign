@@ -3,6 +3,7 @@
     justify-content: flex-start;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 20px;
 }
 .nav1{
     display: flex;
@@ -74,7 +75,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        list-style: none;     
+        list-style: none;
     }
 }
 .nav2-right-div{
@@ -84,4 +85,7 @@
 }
 .main-container .second-container .card-div{
     width: 100%;
+}
+.active-class{
+    color: red;
 }
